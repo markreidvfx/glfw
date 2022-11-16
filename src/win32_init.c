@@ -691,12 +691,14 @@ int _glfwInitWin32(void)
     createKeyTables();
     _glfwUpdateKeyNamesWin32();
 
+#ifdef _GLFW_DPI_AWARENESS
     if (_glfwIsWindows10Version1703OrGreaterWin32())
         SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2);
     else if (IsWindows8Point1OrGreater())
         SetProcessDpiAwareness(PROCESS_PER_MONITOR_DPI_AWARE);
     else if (IsWindowsVistaOrGreater())
         SetProcessDPIAware();
+#endif
 
     if (!createHelperWindow())
         return GLFW_FALSE;

@@ -38,6 +38,9 @@ endif()
 
 if (GLFW_BUILD_WIN32)
     target_compile_definitions(glfw PRIVATE _GLFW_WIN32)
+    if(GLFW_USE_DPI_AWARENESS)
+        target_compile_definitions(glfw PRIVATE _GLFW_DPI_AWARENESS)
+    endif()
     target_sources(glfw PRIVATE win32_platform.h win32_joystick.h win32_init.c
                                 win32_joystick.c win32_monitor.c win32_window.c
                                 wgl_context.c)
